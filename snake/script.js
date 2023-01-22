@@ -77,13 +77,13 @@ function createFood() {
 
 function drawSnake() {
   for (var i = 0; i < snake.length; i++) {
-    context.fillStyle = "#000";
+    context.fillStyle = "Blue";
     context.fillRect(snake[i].x * 10, snake[i].y * 10, 10, 10);
   }
 }
 
 function drawFood() {
-  context.fillStyle = "#f00";
+  context.fillStyle = "LimeGreen";
   context.fillRect(food.x * 10, food.y * 10, 10, 10);
 }
 
