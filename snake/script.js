@@ -32,7 +32,8 @@ function moveSnake() {
   // Check if the snake ate the food
   if (snake[0].x == food.x && snake[0].y == food.y) {
     createFood();
-    snakeSpeed++;
+    // Speed up snake every 10 segments
+    if (snake.length % 10 === 0) snakeSpeed += 3;
   } else {
     // If the snake didn't eat the food, remove the last unit
     snake.pop();
