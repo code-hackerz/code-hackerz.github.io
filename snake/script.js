@@ -13,21 +13,6 @@ let snakeDirection = "right";
 let keyPress = "";
 let highScore = 0;
 
-const critters = [
-  "🦋",
-  "🐛",
-  "🪰",
-  "🦟",
-  "🦂",
-  "🕷",
-  "🪳",
-  "🦗",
-  "🐞",
-  "🪲",
-  "🐝",
-  "🐜",
-];
-
 // Set the canvas size to 400x400
 canvas.width = 400;
 canvas.height = 400;
@@ -79,15 +64,14 @@ function checkCollision() {
 
 function createFood() {
   food = {
-    x: Math.floor(Math.random() * 40),
-    y: Math.floor(Math.random() * 40),
-    critter: critters[Math.floor(Math.random() * critters.length)],
+    x: Math.floor(Math.random() * 39),
+    y: Math.floor(Math.random() * 39),
   };
 
   // Check if the food spawned on the snake
   for (var i = 0; i < snake.length; i++) {
     if (food.x == snake[i].x && food.y == snake[i].y) {
-      return createFood();
+      createFood();
     }
   }
 }
@@ -100,9 +84,8 @@ function drawSnake() {
 }
 
 function drawFood() {
-  context.font = "14px sans-serif";
-  context.textBaseline = "top";
-  context.fillText(food.critter, food.x * 10 - 2, food.y * 10 - 2);
+  context.fillStyle = "LimeGreen";
+  context.fillRect(food.x * 10, food.y * 10, 10, 10);
 }
 
 // Handle arrow key presses to change the direction of the snake
