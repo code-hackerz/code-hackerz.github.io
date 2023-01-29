@@ -32,6 +32,11 @@ const critters = [
 canvas.width = 400;
 canvas.height = 400;
 
+const foodImg = new Image();
+// foodImg.crossOrigin = "anonymous";
+foodImg.src = "spider3.png";
+foodImg.style.display = "none";
+
 function moveSnake() {
   var head = { x: snake[0].x, y: snake[0].y };
 
@@ -100,9 +105,10 @@ function drawSnake() {
 }
 
 function drawFood() {
-  context.font = "14px sans-serif";
-  context.textBaseline = "top";
-  context.fillText(food.critter, food.x * 10 - 2, food.y * 10 - 2);
+  // context.font = "14px sans-serif";
+  // context.textBaseline = "top";
+  // context.fillText(food.critter, food.x * 10 - 2, food.y * 10 - 2);
+  context.drawImage(foodImg, food.x * 10, food.y * 10);
 }
 
 // Handle arrow key presses to change the direction of the snake
