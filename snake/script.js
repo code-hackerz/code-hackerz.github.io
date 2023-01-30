@@ -17,14 +17,21 @@ let highScore = 0;
 canvas.width = 400;
 canvas.height = 400;
 
+function wrap(p) {
+  if (p < 0) {
+    return 40 + p;
+  }
+  return p % 40;
+}
+
 function moveSnake() {
   var head = { x: snake[0].x, y: snake[0].y };
 
   // Update the head position based on the current direction
-  if (snakeDirection == "right") head.x++;
-  else if (snakeDirection == "left") head.x--;
-  else if (snakeDirection == "up") head.y--;
-  else if (snakeDirection == "down") head.y++;
+  if (snakeDirection == "right") head.x = wrap(head.x+1);
+  else if (snakeDirection == "left") head.x = wrap(head.x-1);
+  else if (snakeDirection == "up") head.y = wrap(head.y-1);
+  else if (snakeDirection == "down") head.y = wrap(head.y+1);
 
   // Add the new head to the snake
   snake.unshift(head);
@@ -78,7 +85,8 @@ function createFood() {
 
 function drawSnake() {
   for (var i = 0; i < snake.length; i++) {
-    context.fillStyle = "Blue";
+    // context.fillStyle = `rgb(0, 0, ${256-(snake.length+i)*10})`;
+    context.fillStyle = `hsl(${(180 + (i*13))%360}deg 100% 50%)`;
     context.fillRect(snake[i].x * 10, snake[i].y * 10, 10, 10);
   }
 }
