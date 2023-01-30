@@ -12,6 +12,7 @@ let snakeSpeed = 0;
 let snakeDirection = "right";
 let keyPress = "";
 let highScore = 0;
+let timerId;
 
 // Set the canvas size to 400x400
 canvas.width = 400;
@@ -102,10 +103,16 @@ function keydownHandler(event) {
     case "ArrowLeft":
     case "ArrowRight":
     case "ArrowUp":
-    case "ArrowDown":
-      keyPress = event.key;
+    case "ArrowDown": {
+      if (keyPress !== event.key) {
+        keyPress = event.key;
+        // run gameLoop immediately
+        clearTimeout(timerId);
+        timerId = setTimeout(gameLoop, 0);
+      }
       // It was an arrow key meant for our game, don't let it move the window
       event.preventDefault();
+    }
   }
 }
 
@@ -150,7 +157,7 @@ function gameLoop() {
     highScoreDiv.innerHTML = `High Score: ${highScore}`;
     scoreDiv.innerHTML = `Score: ${score}`;
 
-    setTimeout(gameLoop, baseInterval - snakeSpeed);
+    timerId = setTimeout(gameLoop, baseInterval - snakeSpeed);
   }
 }
 
@@ -172,5 +179,5 @@ function start() {
   document.addEventListener("keydown", keydownHandler);
 
   // Set the game loop to run every 100ms
-  setTimeout(gameLoop, baseInterval - snakeSpeed);
+  timerId = setTimeout(gameLoop, baseInterval - snakeSpeed);
 }
