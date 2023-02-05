@@ -64,14 +64,14 @@ function checkCollision() {
 
 function createFood() {
   food = {
-    x: Math.floor(Math.random() * 39),
-    y: Math.floor(Math.random() * 39),
+    x: Math.floor(Math.random() * 40),
+    y: Math.floor(Math.random() * 40),
   };
 
   // Check if the food spawned on the snake
   for (var i = 0; i < snake.length; i++) {
     if (food.x == snake[i].x && food.y == snake[i].y) {
-      createFood();
+      return createFood();
     }
   }
 }
