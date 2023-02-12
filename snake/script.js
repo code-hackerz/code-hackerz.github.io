@@ -78,7 +78,7 @@ function createFood() {
 
 function drawSnake() {
   for (var i = 0; i < snake.length; i++) {
-    context.fillStyle = "Blue";
+    context.fillStyle = `hsl(${(180 + i * 13) % 360}deg 100% 50%)`;
     context.fillRect(snake[i].x * 10, snake[i].y * 10, 10, 10);
   }
 }
