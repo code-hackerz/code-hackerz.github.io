@@ -8,7 +8,6 @@ let food = {};
 const snake = [];
 const snakeStartLength = 5;
 const baseInterval = 100;
-let snakeSpeed = 0;
 let snakeDirection = "right";
 let keyPress = "";
 let highScore = 0;
@@ -32,8 +31,6 @@ function moveSnake() {
   // Check if the snake ate the food
   if (snake[0].x == food.x && snake[0].y == food.y) {
     createFood();
-    // Speed up snake every 10 segments
-    if (snake.length % 10 === 0) snakeSpeed += 3;
   } else {
     // If the snake didn't eat the food, remove the last unit
     snake.pop();
@@ -142,7 +139,7 @@ function gameLoop() {
     highScoreDiv.innerHTML = `High Score: ${highScore}`;
     scoreDiv.innerHTML = `Score: ${score}`;
 
-    setTimeout(gameLoop, baseInterval - snakeSpeed);
+    setTimeout(gameLoop, baseInterval);
   }
 }
 
@@ -152,7 +149,6 @@ function start() {
   // Create/reset the initial snake
   snake.length = 0;
   snakeDirection = "right";
-  snakeSpeed = 0;
   for (let i = snakeStartLength - 1; i >= 0; i--) {
     snake.push({ x: i + 1, y: 1 });
   }
@@ -164,5 +160,5 @@ function start() {
   document.addEventListener("keydown", keydownHandler);
 
   // Set the game loop to run every 100ms
-  setTimeout(gameLoop, baseInterval - snakeSpeed);
+  setTimeout(gameLoop, baseInterval);
 }
