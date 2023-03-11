@@ -22,7 +22,7 @@ function startGame() {
   answer = country.name.common.toUpperCase();
   guess = [];
   guessesLeft = 10;
-  console.log("the answer is:", answer);
+  console.log(`the answer is: ${answer}`);
   for (let i = 0; i < answer.length; i++) {
     if (answer[i] < "A" || "Z" < answer[i]) {
       guess.push(answer[i]);
@@ -96,7 +96,7 @@ function updateResults() {
 }
 
 function clickLetter(letter) {
-  console.log("clicked letter ", letter);
+  console.log(`clicked letter ${letter}`);
 
   // Disable the clicked letter button so it can't be guessed again
   disableButton(letter);
