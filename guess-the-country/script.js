@@ -43,30 +43,41 @@ function showHint() {
   // create a div element to hold the card
   let card = document.createElement("div");
 
-  // create an image element for the flag
-  let img = document.createElement("img");
-  img.src = country.flags.png;
-  img.style.border = "thin solid grey";
-  card.appendChild(img);
-
   // create a paragraph element for info
   let p = document.createElement("p");
-  if (country.continents.length === 1) {
-    p.innerHTML += `Continent: ${country.continents[0]}<br>`;
-  } else {
-    p.innerHTML += `Continents: ${country.continents.join(", ")}<br>`;
-  }
-  p.innerHTML += `Region: ${country.region}<br>`;
-  p.innerHTML += `Subregion: ${country.subregion}<br>`;
-  p.innerHTML += `Population: ${country.population.toLocaleString()}<br>`;
-  p.innerHTML += `Area: ${country.area.toLocaleString()} km<sup>2</sup><br>`;
-  if (country.capital) {
-    if (country.capital.length === 1) {
-      p.innerHTML += `Capital: ${country.capital[0]}<br>`;
+
+  const hint = Math.floor(Math.random() * 7);
+  console.log(`hint is: ${hint}`)
+  if (hint === 0) {
+    // create an image element for the flag
+    let img = document.createElement("img");
+    img.src = country.flags.png;
+    img.style.border = "thin solid grey";
+    card.appendChild(img);
+  } else if (hint === 1) {
+    if (country.continents.length === 1) {
+      p.innerHTML += `Continent: ${country.continents[0]}<br>`;
     } else {
-      p.innerHTML += `Capitals: ${country.capital.join(", ")}<br>`;
+      p.innerHTML += `Continents: ${country.continents.join(", ")}<br>`;
+    }
+  } else if (hint === 2) {
+    p.innerHTML += `Region: ${country.region}<br>`;
+  } else if (hint === 3) {
+    p.innerHTML += `Subregion: ${country.subregion}<br>`;
+  } else if (hint === 4) {
+    p.innerHTML += `Population: ${country.population.toLocaleString()}<br>`;
+  } else if (hint === 5) {
+    p.innerHTML += `Area: ${country.area.toLocaleString()} km<sup>2</sup><br>`;
+  } else if (hint === 6) {
+    if (country.capital) {
+      if (country.capital.length === 1) {
+        p.innerHTML += `Capital: ${country.capital[0]}<br>`;
+      } else {
+        p.innerHTML += `Capitals: ${country.capital.join(", ")}<br>`;
+      }
     }
   }
+
   card.appendChild(p);
 
   cardContainerDiv.appendChild(card); // create and add the card to the container
